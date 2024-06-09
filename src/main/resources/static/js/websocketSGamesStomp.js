@@ -27,7 +27,7 @@ stompClient.onConnect = (frame) => {
     console.log('Connected: ' + frame);
     console.log('code = /sub/quizgame/'+roomIdx);
     stompClient.subscribe('/sub/quizgame/'+roomIdx, (memberDTO) => {
-        showMember(memberDTO.body);
+        startEnd(memberDTO.body);
     });
     // stompClient.publish({
     //     destination: "/pub/quizgame",
@@ -203,11 +203,12 @@ function startWait(){
     });
 }
 
-function startEnd(flagvalue) {
-    if(flagvalue=="start"){
-        //문제시작
+function startEnd(memberDTO) {
+    let member = JSON.parse(memberDTO);
+    if(member.startEnd=="start"){
+        oxRendering();
     }
-    else if(flagvalue=="end"){
+    else if(member.startEnd=="end"){
         //종료레이아웃
         stompClient.deactivate();
     }

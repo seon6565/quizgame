@@ -21,4 +21,6 @@ public class QuizMemberDTO {
     private int sAnswerCount;
     private int sTotalScore;
     private LocalDateTime regDate;
+
+    private String startEnd;
 }

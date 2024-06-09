@@ -97,12 +97,12 @@ function startQuiz(){
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         data: {
-            roomIdx:roomIdx
+            roomIdx:roomIdx,
+            startEnd:"start"
         },
 
         success: function(data) {
-            roomIdx= data;
-            console.log("ajax roomIdx ="+roomIdx);
+            console.log("start data ="+data);
         },
         error: function() {
             alert("서버와의 통신 중 오류가 발생했습니다.");

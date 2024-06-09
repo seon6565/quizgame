@@ -49,4 +49,13 @@ public class QuizGameController {
         producer.sendMessage(quizMemberDTO);
         return quizMemberDTO;
     }
+
+    @ResponseBody
+    @PostMapping("/start")
+    public QuizMemberDTO start(QuizMemberDTO quizMemberDTO){
+        log.info("start : " + quizMemberDTO);
+
+        producer.sendMessage(quizMemberDTO);
+        return quizMemberDTO;
+    }
 }
