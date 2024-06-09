@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="/js/stomp.umd.min.js"></script>
+    <script src="/js/websocketSGamesStomp.js"></script>
+</head>
+<body>
+<div class="create-item">
+    <p class="title">URL</p>
+    <div class="create-form">
+        <input id="url" type="text" class="inp-c">
+        <button type="button" class="btn-type-red2">복사</button>
+    </div>
+</div>
+<div class="create-item">
+    <p class="title">입장코드</p>
+    <div class="create-form">
+        <input id="roomIdx" type="text" class="inp-c" th:value="${quizRoomDTO.roomIdx}">
+        <button type="button" class="btn-type-red2">복사</button>
+    </div>
+</div>
+<div class="user-list-group">
+    <div class="scroll-box">
+        <!-- S : user list -->
+        <div class="user-list" id="user-list">
+            <!-- S : user item -->
+            <div class="user-item">
+                <div class="user-img">
+                    <img src="https://placeimg.com/95/95/user" alt="">
+                </div>
+                <p class="name">1.홍길동</p>
+                <button type="button" class="btn-del"><i class="ic-user-del"></i><span class="for-a11y">삭제</span></button>
+            </div>
+        </div>
+        <!-- E : user list -->
+        <p class="user-in-info">학생이 입장 중입니다</p>
+    </div>
+</div>
+<button type="button" class="btn-type-dark"><span class="btn-txt">시작하기</span></button>
+</body>
+<script>
+    roomConnect();
+</script>
+</html>

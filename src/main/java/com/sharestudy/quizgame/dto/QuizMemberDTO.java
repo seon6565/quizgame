@@ -18,6 +18,7 @@ public class QuizMemberDTO {
     private String sPassword;
     private String sImgUrl;
     private int sCorrectCount;
+    private int sAnswerCount;
     private int sTotalScore;
     private LocalDateTime regDate;
 }

@@ -18,25 +18,25 @@ public class QuizRoomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     private int roomIdx;
-    @Column(length = 11, nullable = false)
+    @Column(length = 11, nullable = true)
     private int teacherIdx;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = true)
     private String teacherName;
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = true)
     private String title;
-    @Column(length = 500, nullable = false)
+    @Column(length = 500, nullable = true)
     private String intro;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String commentYN;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String scoreYN;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String continueYN;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String rankYN;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String bMusicYN;
-    @Column(length = 1, nullable = false)
+    @Column(length = 1, nullable = true)
     private String eMusicYN;
     @Column(length = 11, nullable = false)
     private int quizIdx;

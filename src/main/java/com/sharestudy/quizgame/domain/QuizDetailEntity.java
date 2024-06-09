@@ -9,26 +9,26 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="tiki_quizdeatil")
+@Table(name="tiki_quizdetail")
 public class QuizDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = true)
+    @Column(unique = true)
     private int detailIdx;
-    @Column(length = 500, nullable = false)
+    @Column(length = 100, nullable = false)
     private String category;
-    @Column(length = 500, nullable = false)
-    private int order;
-    @Column(length = 500)
+    @Column(length = 11, nullable = false)
+    private int questionNumber;
+    @Column(length = 11, nullable = false)
     private int timer;
-    @Column(length = 500,nullable = false)
+    @Column(length = 11, nullable = false)
     private int score;
-    @Column(length = 500, nullable = false)
+    @Column(length = 300, nullable = false)
     private String question;
-    @Column(length = 500)
+    @Column(length = 300, nullable = false)
     private String comment;
-    @Column(length = 500, nullable = false)
+    @Column(length = 300, nullable = false)
     private String answer;
-    @Column(length = 500, nullable = false)
+    @Column(length = 11, nullable = false)
     private int quizIdx;
 }

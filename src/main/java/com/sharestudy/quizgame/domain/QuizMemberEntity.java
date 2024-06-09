@@ -28,6 +28,8 @@ public class QuizMemberEntity {
     private String sImgUrl;
     @Column(length = 2, nullable = false)
     private int sCorrectCount;
+    @Column(length = 2, nullable = false)
+    private int sAnswerCount;
     @Column(length = 4, nullable = false)
     private int sTotalScore;
     @CreatedDate
