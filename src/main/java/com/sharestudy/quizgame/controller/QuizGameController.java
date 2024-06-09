@@ -19,12 +19,11 @@ public class QuizGameController {
     private final KafkaProducer producer;
     private final QuizGameServiceIf quizGameServiceIf;
 
-    @MessageMapping("quizgame")
-    public void sendSocketMessage(QuizMemberDTO quizMemberDTO) {
-        log.info("quizMemberDTO controller : "+ quizMemberDTO);
-        producer.sendMessage(quizMemberDTO);
-
-    }
+//    @MessageMapping("quizgame")
+//    public void sendSocketMessage(QuizMemberDTO quizMemberDTO) {
+//        log.info("quizMemberDTO controller : "+ quizMemberDTO);
+//        producer.sendMessage(quizMemberDTO);
+//    }
 
     @GetMapping("/create")
     public void createroom(QuizRoomDTO quizRoomDTO, Model model){
@@ -40,9 +39,6 @@ public class QuizGameController {
     }
     @GetMapping("/joingame")
     public void joinroom(QuizRoomDTO quizRoomDTO){
-        //임시생성
-        quizRoomDTO.setQuizIdx(1);
-
     }
 
     @ResponseBody
@@ -50,6 +46,7 @@ public class QuizGameController {
     public QuizMemberDTO joinmember(QuizMemberDTO quizMemberDTO){
         log.info("joinmember : " + quizMemberDTO);
         quizGameServiceIf.saveQuizMember(quizMemberDTO);
+        producer.sendMessage(quizMemberDTO);
         return quizMemberDTO;
     }
 }

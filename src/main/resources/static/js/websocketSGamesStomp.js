@@ -29,7 +29,10 @@ stompClient.onConnect = (frame) => {
     stompClient.subscribe('/sub/quizgame/'+roomIdx, (memberDTO) => {
         showMember(memberDTO.body);
     });
-
+    // stompClient.publish({
+    //     destination: "/pub/quizgame",
+    //     body: JSON.stringify({"quizMemberIdx":quizMemberIdx,'roomIdx':roomIdx,"regDate":null,"sPassword":sPassword,"sCorrectCount":sCorrectCount,"sImgUrl":sImgUrl,"sName":sName,"sTotalScore":sTotalScore})
+    // });
 };
 
 stompClient.onDisconnect = (frame) =>{
@@ -46,30 +49,6 @@ stompClient.onStompError = (frame) => {
     console.error('Additional details: ' + frame.body);
 };
 
-function openRoom(url) {
-    $.ajax({
-        url: '/game/create',
-        type: 'post',
-        contentType: 'application/x-www-form-urlencoded',
-        dataType: 'json',
-        data: {
-            quizIdx:1
-        },
-
-        success: function(data) {
-            roomIdx= data;
-            console.log("ajax roomIdx ="+roomIdx);
-            window.open(url+"?roomIdx="+roomIdx,"_blank","menubar=no,toolbar=no,titlebar=no")
-        },
-        error: function() {
-            alert("서버와의 통신 중 오류가 발생했습니다.");
-        }
-    });
-}
-function roomConnect(){
-    roomIdx = $("#roomIdx").val();
-    stompClient.activate();
-}
 
 function disconnect() {
     stompClient.deactivate();
@@ -117,15 +96,15 @@ function namePwdEnter(){
                 <p class="character-name">1번 <span class="name">항목</span></p>
                 <div class="character-item color1">
                     <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character1" value="/images/character/character1.png">
+                        <input type="radio" class="character-radio" name="sImgUrl" id="character1-1" value="/images/character/character1-1.png">
                         <label for="character1"><img src="/images/character/character1-1.png" alt=""></label>
                     </div>
                     <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character2" value="/images/character/character2.png">
+                        <input type="radio" class="character-radio" name="sImgUrl" id="character1-2" value="/images/character/character1-2.png">
                         <label for="character2"><img src="/images/character/character1-2.png" alt=""></label>
                     </div>
                     <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character3" value="/images/character/character1.png">
+                        <input type="radio" class="character-radio" name="sImgUrl" id="character1-3" value="/images/character/character1-3.png">
                         <label for="character3"><img src="/images/character/character1-3.png" alt=""></label>
                     </div>
                 </div>
@@ -217,11 +196,6 @@ function startWait(){
             `)
             stompClient.activate();
 
-            stompClient.publish({
-                destination: "/pub/quizgame",
-                body: JSON.stringify({'quizMemberIdx':quizMemberIdx,'roomIdx':roomIdx,"regDate":null,"sPassword":sPassword,"sCorrectCount":sCorrectCount,"sImgUrl":sImgUrl,"sName":sName,"sTotalScore":sTotalScore})
-            });
-
         },
         error: function() {
             alert("서버와의 통신 중 오류가 발생했습니다.");
@@ -229,14 +203,12 @@ function startWait(){
     });
 }
 
-function showMember(memberDTO) {
-    console.log("show memberDTO" + memberDTO);
-    $("#user-list").append(`<div className='user-item'>
-    <div className='user-img'>
-        <img src=${sImgUrl} alt=''/>
-        </div>
-    <p className='name'>${sName}</p>
-    <button type='button' className='btn-del'><i className='ic-user-del'></i><span className='for-a11y'>삭제</span>
-    </button>
-</div>`);
+function startEnd(flagvalue) {
+    if(flagvalue=="start"){
+        //문제시작
+    }
+    else if(flagvalue=="end"){
+        //종료레이아웃
+        stompClient.deactivate();
+    }
 }

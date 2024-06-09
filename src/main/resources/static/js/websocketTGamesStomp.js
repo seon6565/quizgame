@@ -76,152 +76,33 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function codeEnter(){
-    roomIdx = $("#roomIdx").val();
-    console.log("roomIdx = "+roomIdx);
-    $("#form-box").html(`
-    <div class="form-group">
-        <div class="form-title">
-            <h3 class="title">나도 참여할래요.</h3>
+function showMember(memberDTO) {
+    console.log("show memberDTO" + memberDTO);
+    let member = JSON.parse(memberDTO);
+    console.log(member);
+    $("#user-list").append(`<div className='user-item'>
+    <div className='user-img'>
+        <img src=${member.simgUrl} alt=''/>
         </div>
-        <div class="form-item">
-            <div class="input-wrap">
-                <label for="input-name" class="input-label-icon"><i class="ic-name"></i></label>
-                <input type="text" id="sName" class="input-line" placeholder="이름">
-            </div>
-            <p class="error-text">
-                <i class="ic-warning"></i>
-                사용 중이에요. 다른 이름을 넣어주세요
-            </p>
-        </div>
-        <div class="form-item">
-            <div class="input-wrap">
-                <label for="input-pw" class="input-label-icon"><i class="ic-password"></i></label>
-                <input type="password" id="sPassword" class="input-line" placeholder="참여자 비밀번호">
-            </div>
-            <p class="guide-text">4자리 비밀번호를 입력해주세요.</p>
-        </div>
-    </div><div class="form-btn">
-            <button onclick="namePwdEnter()" type="button" class="btn-type-black"><span class="btn-txt">시작하기</span></button>
-        </div>`);
-}
-function namePwdEnter(){
-    sName = $("#sName").val();
-    sPassword = $("#sPassword").val();
-    console.log("sName = "+sName);
-    console.log("sPassword = "+sPassword);
-    $("#form-box").html(`<main class="content-area ready">
-        <p class="ready-txt3">어떤 친구로 참여할까요?</p>
-        <div class="character-list">
-            <div class="character-group">
-                <p class="character-name">1번 <span class="name">항목</span></p>
-                <div class="character-item color1">
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character1" value="/images/character/character1.png">
-                        <label for="character1"><img src="/images/character/character1-1.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character2" value="/images/character/character2.png">
-                        <label for="character2"><img src="/images/character/character1-2.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character3" value="/images/character/character1.png">
-                        <label for="character3"><img src="/images/character/character1-3.png" alt=""></label>
-                    </div>
-                </div>
-            </div>
-            <div class="character-group">
-                <p class="character-name">2번 <span class="name">항목</span></p>
-                <div class="character-item color2">
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character2-1" value="/images/character/character2-1.png">
-                        <label for="character1-2"><img src="/images/character/character2-1.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character2-2" value="/images/character/character2-2.png">
-                        <label for="character2-2"><img src="/images/character/character2-2.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character2-3" value="/images/character/character2-3.png">
-                        <label for="character3-2"><img src="/images/character/character2-3.png" alt=""></label>
-                    </div>
-                </div>
-            </div>
-            <div class="character-group">
-                <p class="character-name">3번 <span class="name">항목</span></p>
-                <div class="character-item color3">
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character3-1" value="/images/character/character3-1.png">
-                        <label for="character1-3"><img src="/images/character/character3-1.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character3-2" value="/images/character/character3-2.png">
-                        <label for="character2-3"><img src="/images/character/character3-2.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character3-3" value="/images/character/character3-3.png">
-                        <label for="character3-3"><img src="/images/character/character3-3.png" alt=""></label>
-                    </div>
-                </div>
-            </div>
-            <div class="character-group">
-                <p class="character-name">4번 <span class="name">항목</span></p>
-                <div class="character-item color4">
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character4-1" value="/images/character/character4-1.png">
-                        <label for="character1-4"><img src="/images/character/character4-1.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character4-2" value="/images/character/character4-2.png">
-                        <label for="character2-4"><img src="/images/character/character4-2.png" alt=""></label>
-                    </div>
-                    <div class="character-choice">
-                        <input type="radio" class="character-radio" name="sImgUrl" id="character4-3" value="/images/character/character4-3.png">
-                        <label for="character3-4"><img src="/images/character/character4-3.png" alt=""></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="btn-a-center">
-            <button onclick="startWait()" type="button" class="btn-type-black">골랐어요!</button>
-        </div>
-    </main>`);
+    <p className='name'>${member.sname}</p>
+    <button type='button' className='btn-del'><i className='ic-user-del'></i><span className='for-a11y'>삭제</span>
+    </button>
+</div>`);
 }
 
-function startWait(){
-    sImgUrl = document.querySelector('[name="sImgUrl"]:checked').value;
-    console.log("sImgUrl = "+sImgUrl);
-
+function startQuiz(){
     $.ajax({
-        url: '/game/joinmember',
+        url: '/game/start',
         type: 'post',
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         data: {
-            roomIdx: roomIdx,
-            sName: sName,
-            sPassword: sPassword,
-            sImgUrl: sImgUrl,
-            sCorrectCount: 0,
-            sAnswerCount: 0,
-            sTotalScore: 0,
+            roomIdx:roomIdx
         },
 
         success: function(data) {
-            $("#form-box").html(`
-            <main class="content-area ready">
-                <p class="ready-txt1">선생님이 시작하기 버튼을 누르면 <br>바로 풀이가 시작돼요.</p>
-                <div class="img-box color2"><img src=${sImgUrl} alt=""></div>
-                <p class="ready-txt2"><span class="m-block">${sName}님이</span> 입장하였습니다.</p>
-            </main>
-            `)
-            stompClient.activate();
-
-            stompClient.publish({
-                destination: "/pub/quizgame",
-                body: JSON.stringify({'quizMemberIdx':quizMemberIdx,'roomIdx':roomIdx,"regDate":null,"sPassword":sPassword,"sCorrectCount":sCorrectCount,"sImgUrl":sImgUrl,"sName":sName,"sTotalScore":sTotalScore})
-            });
-
+            roomIdx= data;
+            console.log("ajax roomIdx ="+roomIdx);
         },
         error: function() {
             alert("서버와의 통신 중 오류가 발생했습니다.");
@@ -229,14 +110,5 @@ function startWait(){
     });
 }
 
-function showMember(memberDTO) {
-    console.log("show memberDTO" + memberDTO);
-    $("#user-list").append(`<div className='user-item'>
-    <div className='user-img'>
-        <img src=${sImgUrl} alt=''/>
-        </div>
-    <p className='name'>${sName}</p>
-    <button type='button' className='btn-del'><i className='ic-user-del'></i><span className='for-a11y'>삭제</span>
-    </button>
-</div>`);
+function endQuiz(){
 }
